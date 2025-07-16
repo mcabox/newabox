@@ -1,98 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gole 1 pro+_狗乐商城</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .product-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .product-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .product-price {
-            font-size: 20px;
-            color: #ff5722;
-            margin-bottom: 20px;
-        }
-        .product-description {
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        .product-specs {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .product-specs dt {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .product-specs dd {
-            margin-bottom: 10px;
-        }
-        .purchase-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #ff5722;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .purchase-button:hover {
-            background-color: #e04e1c;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A盒社区</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+a.no-underline {
+    text-decoration: none;
+    color: #fff;
+}
+</style>
+ <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#F97316',
+            secondary: '#1E293B',
+            dark: '#0F172A',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .glass {
+        backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(255, 255, 255, 0.75);
+      }
+      .text-balance {
+        text-wrap: balance;
+      }
+      .feature-card {
+        @apply bg-white/50 glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+      }
+      .download-btn {
+        @apply inline-flex items-center justify-center px-8 py-3 rounded-lg font-medium transition-all duration-300 
+               bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 
+               focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+      }
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <img src="2.png" alt="手机图片" class="product-image">
-        <h1 class="product-title">Gole 1 pro+</h1>
-        <p class="product-price">￥8299起</p>
-        <p class="product-description">搭载骁龙8gen3+自研芯片sx20000，双芯片混合，跑分约586万，防水防爆防电，后置3亿像素主摄，有光学防抖，数字防抖，手持防抖，支持电影模式及专业模式</p>
-        <dl class="product-specs">
-            <dt>处理器</dt>
-            <dd>骁龙8gen3+sx20000</dd>
-            <dt>运行内存</dt>
-            <dd>64GB</dd>
-            <dt>存储</dt>
-            <dd>1tb/2tb/5tb</dd>
-            <dt>摄像头</dt>
-            <dd>前置6200万像素，后置3.06亿像素主摄+8000万像素超广角+1.08亿像素长焦</dd>
-            <dt>电池</dt>
-            <dd>6000mAh，支持210W快充</dd>
-            <dt>规格</dt>
-            <dd>64+1tb/64+2tb/64+5tb</dd>
-      <dt>颜色</dt>
-      <dd>极光限定版</dd>
-      <dt>价格</dt>
-      <dd>8299-13999</dd>
-      <dt>售价</dt>
-      <dd>64+1tb:8299元;64+2tb:9599元;64+5tb:13999元</dd>
-  </dl>
-        <a href="#" class="purchase-button">立即购买</a>
+<body class="bg-white font-inter text-black min-h-screen overflow-x-hidden">
+  <!-- 导航栏 -->
+  <header class="fixed top-0 left-0 w-full z-50">
+    <nav class="glass border-b border-primary/20 px-4 md:px-8 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+          <i class="fa fa-cube text-white"></i>
+        </div>
+        <h1 class="text-xl font-bold hidden md:block">A盒社区</h1>
+      </div>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#intro" class="text-gray-600 hover:text-primary transition-colors">产品介绍</a>
+        <a href="#design" class="text-gray-600 hover:text-primary transition-colors">UI设计</a>
+        <a href="#features" class="text-gray-600 hover:text-primary transition-colors">功能亮点</a>
+        <a href="#links" class="text-gray-600 hover:text-primary transition-colors">友好链接</a>
+      </div>
+      <button class="md:hidden text-2xl text-primary" id="menuBtn">
+        <i class="fa fa-bars"></i>
+      </button>
+    </nav>
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="hidden md:hidden glass border-b border-primary/20 py-2 px-4 bg-white absolute w-full">
+      <a href="#intro" class="block py-2 text-gray-600 hover:text-primary transition-colors">产品介绍</a>
+      <a href="#design" class="block py-2 text-gray-600 hover:text-primary transition-colors">UI设计</a>
+      <a href="#features" class="block py-2 text-gray-600 hover:text-primary transition-colors">功能亮点</a>
+      <a href="#links" class="block py-2 text-gray-600 hover:text-primary transition-colors">友好链接</a>
     </div>
-</body>
-</html>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section class="pt-20 pb-16 md:pt-32 md:pb-24 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://picsum.photos/1600/900?random=1')] bg-cover bg-center opacity-5"></div>
+    <div class="container mx-auto relative z-10">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4 text-balance">A盒社区</h1>
+      <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 max-w-3xl mx-auto mb-8">我的世界一站式服务平台，融合模组管理、社区互动与游戏优化的精美工具</p>
+      <! --<div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+       <!-- <img src="https://picsum.photos/300/180?random=101" alt="UI预览" class="rounded-lg shadow-xl max-w-xs">
+       <!-- <img src="https://picsum.photos/300/180?random=102" alt="功能展示" class="rounded-lg shadow-xl max-w-xs">
+   <!--   </div>
+      <button class="download-btn mt-10">
+ <i class="fa fa-download ml-2"></i><a href="" class="no-underline">立即下载</a>
+      </button>
+    </div>
+  </section>
+
+  <!-- 产品介绍 -->
+  <section id="intro" class="py-16 px-4 md:px-8">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">关于A盒社区</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-lg text-gray-600 mb-6">A盒社区作为我的世界玩家专属服务平台，以精美UI设计与流畅体验为核心，整合模组管理、社区互动、游戏加速等功能，为玩家打造一站式游戏生态。</p>
+          <p class="text-lg text-gray-600 mb-6">平台采用现代化v3 应用开发专用编程设计语言，将像素风格元素与毛玻璃、渐变等视觉效果结合，既保留游戏特色又提升操作体验，适配不同设备屏幕，让每一次访问都成为享受。</p>
+          <div class="flex flex-wrap gap-4 mt-8">
+          </div>
+            <div class="flex items-center">
+            
+          </div>
+        </div>
+ 
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- UI设计亮点 -->
+  <section id="design" class="py-16 px-4 md:px-8 bg-gray-50">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">UI设计亮点</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="feature-card">
+          <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+            <i class="fa fa-moon-o text-2xl text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3">高斯模糊美学</h3>
+          <p class="text-gray-600 text-center">界面大量应用高斯模糊效果，结合半透明毛玻璃质感，打造层次分明的视觉深度，弱化背景干扰，聚焦核心内容。</p>
+        </div>
+        <div class="feature-card">
+          <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+            <i class="fa fa-paint-brush text-2xl text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3">像素风融合</h3>
+          <p class="text-gray-600 text-center">保留我的世界像素元素，通过圆角矩形、像素边框等细节设计，将经典游戏风格与现代UI完美融合。</p>
+        </div>
+        <div class="feature-card">
+          <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+            <i class="fa fa-magic text-2xl text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold text-center mb-3">动态交互体验</h3>
+          <p class="text-gray-600 text-center">卡片悬停、按钮点击等场景加入微动画反馈，操作过程流畅自然，提升使用沉浸感。</p>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+<!-- 功能亮点介绍 -->
+  <section id="features" class="py-16 px-4 md:px-8">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">核心功能亮点</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="feature-card">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fa fa-user-circle-o text-primary mr-3"></i>
+            个人中心与资料管理
+          </h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>侧滑式个人界面，快速访问签到、资料修改等功能</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>支持名称、简介、性别等个人信息自定义</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>账单管理与账号安全设置一体化</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fa fa-shield text-primary mr-3"></i>
+            安全防护与性能优化
+          </h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>动态加密技术保护用户隐私与数据安全</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>多线路选择（加载快/稳定性强/防DDoS）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>页面深度优化，低配置设备也能流畅运行</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fa fa-cubes text-primary mr-3"></i>
+            模组管理与备份
+          </h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>云端自动备份模组，本地删除后可一键恢复</span>
+            </li>
+<li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>模组分类展示，支持关键词快速搜索</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>与游戏启动器联动，自动加载模组配置</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fa fa-comments text-primary mr-3"></i>
+            社交与社区互动
+          </h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>支持私信、群聊/密聊:消息仅个人可见</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>论坛系统支持发帖、点赞、评论与回复</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check text-primary mt-1 mr-2"></i>
+              <span>一键A达,快速跳转目标互动页面</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+a.no-underline {
+    text-decoration: none;
+    color: #fff;
+}
+</style>
+
+
+  <!-- 下载区域 -->
+  <section class="py-16 px-4 md:px-8 bg-primary/5">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">立即体验A盒社区</h2>
+      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">一键下载安装，开启我的世界全新体验，解锁更多模组与社区互动功能</p>
+      <button class="download-btn">
+        <i class="fa fa-download mr-2"></i> <a href="abox.apk" class="no-underline">下载A盒社区 V1.0</a>
+      </button>
+      <p class="text-sm text-gray-500 mt-4">安全下载 · 无捆绑</p>
+    </div>
+  </section>
+
+  <!-- 友好链接 -->
+  <section id="links" class="py-12 px-4 md:px-8 bg-gray-50">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">友好链接</h2>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+        <a href="https://klpbbs.com/#" class="feature-card flex flex-col items-center">
+          <i class="fa fa-home text-2xl text-primary mb-2"></i>
+          <span>苦力怕论坛</span>
+        </a>
+        <a href="thanks.html" class="feature-card flex flex-col items-center">
+          <i class="fa fa-info-circle text-2xl text-primary mb-2"></i>
+          <span>特别鸣谢</span>
+        </a>
+ 
