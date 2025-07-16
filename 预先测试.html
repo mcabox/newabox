@@ -1,0 +1,249 @@
+ 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云电脑</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        body {
+            background-color: #e8f4f8;
+            background-image: url('https://picsum.photos/id/1015/1920/1080');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* 桌面图标样式 */
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+        }
+        .icon {
+            width: 80px;
+            display: inline-block;
+            margin: 15px;
+            cursor: pointer;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .icon img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-color: rgba(255,255,255,0.2);
+            padding: 10px;
+        }
+        .icon p {
+            margin-top: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        /* 任务栏样式 */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            background-color: rgba(30,30,30,0.8);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .start-btn {
+            width: 50px;
+            height: 35px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .taskbar-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .taskbar-icon {
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .system-tray {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 14px;
+        }
+        /* 窗口样式（默认隐藏） */
+        .window {
+            display: none;
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+        .window-header {
+            height: 35px;
+            background-color: #0078d7;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            justify-content: space-between;
+        }
+        .window-title {
+            font-weight: 500;
+        }
+        .window-controls {
+            display: flex;
+            gap: 5px;
+        }
+        .window-control {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .close {
+            background-color: #ff5f58;
+        }
+        .window-content {
+            padding: 20px;
+            height: calc(100% - 35px);
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 桌面图标 -->
+    <div class="desktop">
+        <div class="icon" onclick="openWindow('myComputer')">
+            <img src="https://cdn-icons-png.flaticon.com/128/6132/6132221.png" alt="我的电脑">
+            <p>我的电脑</p>
+        </div>
+        <div class="icon" onclick="openWindow('documents')">
+            <img src="https://cdn-icons-png.flaticon.com/128/2232/2232688.png" alt="文档">
+            <p>我的文档</p>
+        </div>
+        <div class="icon" onclick="openWindow('browser')">
+            <img src="https://cdn-icons-png.flaticon.com/128/1051/1051369.png" alt="浏览器">
+            <p>云浏览器</p>
+        </div>
+        <div class="icon" onclick="openWindow('settings')">
+            <img src="https://cdn-icons-png.flaticon.com/128/942/942869.png" alt="设置">
+            <p>设置中心</p>
+        </div>
+    </div>
+
+    <!-- 任务栏 -->
+    <div class="taskbar">
+     <div class="start-btn">开始</div>
+        <div class="taskbar-icons">
+            <div class="taskbar-icon" onclick="openWindow('browser')">🌐</div>
+            <div class="taskbar-icon" onclick="openWindow('documents')">📄</div>
+        </div>
+        <div class="system-tray">
+            <div>音量</div>
+            <div>网络</div>
+            <div>12:30</div>
+        </div>
+    </div>
+
+    <!-- 窗口示例（我的电脑） -->
+    <div class="window" id="myComputer">
+        <div class="window-header">
+            <div class="window-title">我的电脑 - 云存储</div>
+            <div class="window-controls">
+                <div class="window-control close" onclick="closeWindow('myComputer')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h3>云存储分区</h3>
+            <p>系统盘 (C:) - 50GB / 100GB</p>
+            <p>数据盘 (D:) - 120GB / 500GB</p>
+            <p>共享盘 (E:) - 80GB / 200GB</p>
+        </div>
+    </div>
+
+    <!-- 其他窗口（文档/浏览器/设置）结构类似，省略重复代码 -->
+    <div class="window" id="documents">
+        <div class="window-header">
+            <div class="window-title">我的文档 - 云文档</div>
+            <div class="window-controls">
+                <div class="window-control close" onclick="closeWindow('documents')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h3>最近文档</h3>
+            <p>工作报告.docx</p>
+            <p>照片库.zip</p>
+            <p>笔记.txt</p>
+        </div>
+    </div>
+
+    <div class="window" id="browser">
+        <div class="window-header">
+            <div class="window-title">云浏览器 - 在线浏览</div>
+            <div class="window-controls">
+                <div class="window-control close" onclick="closeWindow('browser')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h3>云浏览器</h3>
+            <p>已连接到云端服务器，正在加载网页...</p>
+        </div>
+    </div>
+
+    <div class="window" id="settings">
+        <div class="window-header">
+            <div class="window-title">设置中心 - 云配置</div>
+            <div class="window-controls">
+                <div class="window-control close" onclick="closeWindow('settings')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h3>系统设置</h3>
+            <p>显示设置 | 网络设置 | 账户管理 | 安全中心</p>
+        </div>
+    </div>
+
+    <script>
+        // 打开窗口函数
+        function openWindow(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+        // 关闭窗口函数
+        function closeWindow(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
