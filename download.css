@@ -1,12 +1,13 @@
+
  {
-            margin: 0;
+     margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
         body {
-            background-color: #f8f9fa;
-            color: #333;
+          background-color: #fff;
+             color: #333;
             padding: 20px;
         }
         .app-container {
@@ -18,10 +19,9 @@
         .app-icon {
             width: 120px;
             height: 120px;
-            border-radius: 24px;
+            
             margin: 30px auto 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            object-fit: cover;
+               object-fit: cover;
         }
         /* 应用名称和描述 */
         .app-name {
@@ -54,10 +54,7 @@
 background-color: #0099ff; 
         color: #fff;
         }
-        .download-btn.ios {
-            background-color: #000;
-            color: #fff;
-        }
+      
         .download-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
