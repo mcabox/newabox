@@ -1,0 +1,76 @@
+ {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+        }
+        .app-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        /* APP图标 */
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin: 30px auto 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+        /* 应用名称和描述 */
+        .app-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .app-desc {
+            color: #666;
+            font-size: 16px;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
+        }
+        /* 下载按钮 */
+        .download-buttons {
+            margin: 20px 0 40px;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            margin: 0 8px 15px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .download-btn.android {
+background-color: #0099ff; 
+        color: #fff;
+        }
+        .download-btn.ios {
+            background-color: #000;
+            color: #fff;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        /* 版本信息 */
+        .app-version {
+            color: #999;
+            font-size: 14px;
+            margin: 10px 0 50px;
+        }
+        /* 底部提示 */
+   .footer {
+            color: #aaa;
+            font-size: 12px;
+            margin-top: 60px;
+        }
