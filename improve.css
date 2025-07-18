@@ -1,0 +1,84 @@
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #fff;
+            font-family: sans-serif;
+        }
+        /* 容器样式 */
+        .app-container {
+            width: 90%;
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        /* APP图标 */
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+        }
+        /* 应用名称和描述 */
+        .app-name {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .app-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        /* 下载按钮 */
+.download-btn {
+            display: block;
+            width: 160px;
+            height: 42px;
+            line-height: 44px;
+            background-color: #07C160;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 0 auto 25px;
+            font-size: 16px;
+        }
+        /* 截图区域 */
+        .screenshots {
+            margin-bottom: 25px;
+        }
+        .screenshot-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .screenshot-item {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .screenshot-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* 版本信息 */
+        .app-version {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+        /* 底部信息 */
+        .footer {
+            font-size: 12px;
+            color: #aaa;
+        }
+        .footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+   
