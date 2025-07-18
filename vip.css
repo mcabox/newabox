@@ -1,0 +1,332 @@
+/* vip.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9fafb;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 导航栏样式 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4f46e5;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #4f46e5;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.login-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #4338ca;
+}
+
+/* 主容器样式 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+/* 标题区域 */
+.header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header-section h1 {
+    font-size: 2.5rem;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 特权展示 */
+.privileges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.privilege-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 300px;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.privilege-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.privilege-icon {
+    color: #4f46e5;
+    margin-top: 0.25rem;
+}
+
+.privilege-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
+
+.privilege-info p {
+    color: #6b7280;
+}
+
+/* 会员套餐区域 */
+.plans-section {
+    margin-bottom: 4rem;
+}
+
+.plans-section h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    color: #111827;
+}
+
+.plans-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.plan-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    width: 300px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.plan-card.popular {
+    border: 2px solid #4f46e5;
+    transform: scale(1.05);
+}
+
+.popular-tag {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4f46e5;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.plan-header {
+    margin-bottom: 1.5rem;
+}
+
+.plan-header h3 {
+    font-size: 1.3rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.3rem;
+}
+
+.amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.period {
+    color: #6b7280;
+    margin-left: 0.5rem;
+}
+
+.save-info {
+    color: #10b981;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.plan-features {
+    margin-bottom: 2rem;
+}
+
+.feature {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    color: #4b5563;
+}
+
+.feature:last-child {
+    border-bottom: none;
+}
+
+.subscribe-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #4f46e5;
+    background-color: white;
+    color: #4f46e5;
+}
+
+.subscribe-btn:hover {
+    background-color: #f5f3ff;
+}
+
+.subscribe-btn.primary {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.subscribe-btn.primary:hover {
+    background-color: #4338ca;
+}
+
+/* 支付方式 */
+.payment-methods {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.payment-methods h3 {
+    font-size: 1.2rem;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.methods-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.method-icon {
+    background-color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    color: #6b7280;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 页脚 */
+.footer {
+    background-color: white;
+    padding: 2rem 5%;
+    border-top: 1px solid #f3f4f6;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #4f46e5;
+}
+
+.copyright {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header-section h1 {
+        font-size: 2rem;
+    }
+    
+    .plans-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .plan-card.popular {
+        transform: none;
+    }
+}
