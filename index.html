@@ -1,273 +1,492 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A盒社区</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <style>
-a.no-underline {
-    text-decoration: none;
-    color: #fff;
-}
-</style>
- <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#F97316',
-            secondary: '#1E293B',
-            dark: '#0F172A',
-            light: '#F8FAFC'
-          },
-          fontFamily: {
-            inter: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      }
-    }
-  </script>
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .content-auto {
-        content-visibility: auto;
-      }
-      .glass {
-        backdrop-filter: blur(16px) saturate(180%);
-        background-color: rgba(255, 255, 255, 0.75);
-      }
-      .text-balance {
-        text-wrap: balance;
-      }
-      .feature-card {
-        @apply bg-white/50 glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
-      }
-      .download-btn {
-        @apply inline-flex items-center justify-center px-8 py-3 rounded-lg font-medium transition-all duration-300 
-               bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 
-               focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的世界A盒 - 一站式MC辅助工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32', // 我的世界绿
+                        secondary: '#FFC107', // 辅助黄
+                        dark: '#1A202C',
+                    },
+                    fontFamily: {
+                        minecraft: ['"Minecraftia"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+            .bg-mc-pattern {
+                background-image: url('mctp.png');
+                background-size: cover;
+                background-position: center;
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+    <!-- 引入Minecraft风格字体 -->
+    <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
 </head>
-<body class="bg-white font-inter text-black min-h-screen overflow-x-hidden">
-  <!-- 导航栏 -->
-  <header class="fixed top-0 left-0 w-full z-50">
-    <nav class="glass border-b border-primary/20 px-4 md:px-8 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-          <i class="fa fa-cube text-white"></i>
-        </div>
-        <h1 class="text-xl font-bold hidden md:block">A盒社区</h1>
-      </div>
-      <div class="hidden md:flex items-center space-x-6">
-        <a href="#intro" class="text-gray-600 hover:text-primary transition-colors">产品介绍</a>
-        <a href="#design" class="text-gray-600 hover:text-primary transition-colors">UI设计</a>
-        <a href="#features" class="text-gray-600 hover:text-primary transition-colors">功能亮点</a>
-        <a href="#links" class="text-gray-600 hover:text-primary transition-colors">友好链接</a>
-      </div>
-      <button class="md:hidden text-2xl text-primary" id="menuBtn">
-        <i class="fa fa-bars"></i>
-      </button>
-    </nav>
-    <!-- 移动端菜单 -->
-    <div id="mobileMenu" class="hidden md:hidden glass border-b border-primary/20 py-2 px-4 bg-white absolute w-full">
-      <a href="#intro" class="block py-2 text-gray-600 hover:text-primary transition-colors">产品介绍</a>
-      <a href="#design" class="block py-2 text-gray-600 hover:text-primary transition-colors">UI设计</a>
-      <a href="#features" class="block py-2 text-gray-600 hover:text-primary transition-colors">功能亮点</a>
-      <a href="#links" class="block py-2 text-gray-600 hover:text-primary transition-colors">友好链接</a>
-    </div>
-  </header>
-
-  <!-- 英雄区域 -->
-  <section class="pt-20 pb-16 md:pt-32 md:pb-24 px-4 text-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-[url('https://picsum.photos/1600/900?random=1')] bg-cover bg-center opacity-5"></div>
-    <div class="container mx-auto relative z-10">
-      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4 text-balance">A盒社区</h1>
-      <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 max-w-3xl mx-auto mb-8">我的世界一站式服务平台，融合模组管理、社区互动与游戏优化的精美工具</p>
-      <! --<div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-       <!-- <img src="https://picsum.photos/300/180?random=101" alt="UI预览" class="rounded-lg shadow-xl max-w-xs">
-       <!-- <img src="https://picsum.photos/300/180?random=102" alt="功能展示" class="rounded-lg shadow-xl max-w-xs">
-   <!--   </div>
-      <button class="download-btn mt-10">
- <i class="fa fa-download ml-2"></i><a href="" class="no-underline">立即下载</a>
-      </button>
-    </div>
-  </section>
-
-  <!-- 产品介绍 -->
-  <section id="intro" class="py-16 px-4 md:px-8">
-    <div class="container mx-auto max-w-6xl">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">关于A盒社区</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <p class="text-lg text-gray-600 mb-6">A盒社区作为我的世界玩家专属服务平台，以精美UI设计与流畅体验为核心，整合模组管理、社区互动、游戏加速等功能，为玩家打造一站式游戏生态。</p>
-          <p class="text-lg text-gray-600 mb-6">平台采用现代化v3 应用开发专用编程设计语言，将像素风格元素与毛玻璃、渐变等视觉效果结合，既保留游戏特色又提升操作体验，适配不同设备屏幕，让每一次访问都成为享受。</p>
-          <div class="flex flex-wrap gap-4 mt-8">
-          </div>
-            <div class="flex items-center">
+<body class="bg-gray-50 font-sans">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all 0.3s ease">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center bg-dark/80 backdrop-blur-sm text-white">
+            <a href="#" class="flex items-center gap-2">
+                <i class="fa fa-cube text-secondary text-2xl"></i>
+                <span class="text-xl font-bold font-minecraft">我的世界A盒</span>
+            </a>
             
-          </div>
+            <!-- 桌面端导航 -->
+            <div class="hidden md:flex gap-8">
+                <a href="#home" class="hover:text-secondary transition-colors">首页</a>
+                <a href="#features" class="hover:text-secondary transition-colors">功能</a>
+                <a href="#download" class="hover:text-secondary transition-colors">下载</a>
+                <a href="#faq" class="hover:text-secondary transition-colors">常见问题</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-white text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
         </div>
- 
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/95 backdrop-blur-sm text-white px-4 py-2">
+            <a href="#home" class="block py-2 hover:text-secondary">首页</a>
+            <a href="#features" class="block py-2 hover:text-secondary">功能</a>
+            <a href="#download" class="block py-2 hover:text-secondary">下载</a>
+            <a href="#faq" class="block py-2 hover:text-secondary">常见问题</a>
+        </div>
+    </nav>
 
+    <!-- 首页Banner -->
+    <section id="home" class="bg-mc-pattern h-screen flex items-center relative">
+        <div class="absolute inset-0 bg-dark/50"></div>
+        <div class="container mx-auto px-4 z-10 text-white">
+            <div class="max-w-2xl">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-4 text-shadow font-minecraft">
+                    解锁我的世界<br>
+                    <span class="text-secondary">全新玩法</span>
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] mb-8 text-gray-100">
+                    我的世界A盒 - 安全、高效的MC辅助工具，提供模组管理、材质包下载、地图推荐等一站式服务，让你的冒险更精彩！
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#download" class="bg-secondary text-dark px-8 py-3 rounded-lg font-bold hover:bg-secondary/90 transition-colors">
+                        立即下载
+                    </a>
+                    <a href="#features" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition-colors">
+                        了解功能
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#features" class="text-white text-3xl">
+                <i class="fa fa-angle-down"></i>
+            </a>
+        </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
+    <!-- 功能介绍 -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4 font-minecraft">强大功能，助力冒险</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">精选实用功能，满足不同玩家需求，让你的MC体验更流畅、更丰富</p>
+            </div>
 
-  <!-- UI设计亮点 -->
-  <section id="design" class="py-16 px-4 md:px-8 bg-gray-50">
-    <div class="container mx-auto max-w-6xl">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">UI设计亮点</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="feature-card">
-          <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-            <i class="fa fa-moon-o text-2xl text-primary"></i>
-          </div>
-          <h3 class="text-xl font-bold text-center mb-3">高斯模糊美学</h3>
-          <p class="text-gray-600 text-center">界面大量应用高斯模糊效果，结合半透明毛玻璃质感，打造层次分明的视觉深度，弱化背景干扰，聚焦核心内容。</p>
-        </div>
-        <div class="feature-card">
-          <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-            <i class="fa fa-paint-brush text-2xl text-primary"></i>
-          </div>
-          <h3 class="text-xl font-bold text-center mb-3">像素风融合</h3>
-          <p class="text-gray-600 text-center">保留我的世界像素元素，通过圆角矩形、像素边框等细节设计，将经典游戏风格与现代UI完美融合。</p>
-        </div>
-        <div class="feature-card">
-          <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-            <i class="fa fa-magic text-2xl text-primary"></i>
-          </div>
-          <h3 class="text-xl font-bold text-center mb-3">动态交互体验</h3>
-          <p class="text-gray-600 text-center">卡片悬停、按钮点击等场景加入微动画反馈，操作过程流畅自然，提升使用沉浸感。</p>
-        </div>
-      </div>
-  
-    </div>
-  </section>
-<!-- 功能亮点介绍 -->
-  <section id="features" class="py-16 px-4 md:px-8">
-    <div class="container mx-auto max-w-6xl">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">核心功能亮点</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div class="feature-card">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <i class="fa fa-user-circle-o text-primary mr-3"></i>
-            个人中心与资料管理
-          </h3>
-          <ul class="space-y-3 text-gray-600">
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>侧滑式个人界面，快速访问签到、资料修改等功能</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>支持名称、简介、性别等个人信息自定义</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>账单管理与账号安全设置一体化</span>
-            </li>
-          </ul>
-        </div>
-        <div class="feature-card">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <i class="fa fa-shield text-primary mr-3"></i>
-            安全防护与性能优化
-          </h3>
-          <ul class="space-y-3 text-gray-600">
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>动态加密技术保护用户隐私与数据安全</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>多线路选择（加载快/稳定性强/防DDoS）</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>页面深度优化，低配置设备也能流畅运行</span>
-            </li>
-          </ul>
-        </div>
-        <div class="feature-card">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <i class="fa fa-cubes text-primary mr-3"></i>
-            模组管理与备份
-          </h3>
-          <ul class="space-y-3 text-gray-600">
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>云端自动备份模组，本地删除后可一键恢复</span>
-            </li>
-<li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>模组分类展示，支持关键词快速搜索</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>与游戏启动器联动，自动加载模组配置</span>
-            </li>
-          </ul>
-        </div>
-        <div class="feature-card">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <i class="fa fa-comments text-primary mr-3"></i>
-            社交与社区互动
-          </h3>
-          <ul class="space-y-3 text-gray-600">
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>支持私信、群聊/密聊:消息仅个人可见</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>论坛系统支持发帖、点赞、评论与回复</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-check text-primary mt-1 mr-2"></i>
-              <span>一键A达,快速跳转目标互动页面</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 功能卡片1 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-puzzle-piece text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">模组管理</h3>
+                    <p class="text-gray-600">一键安装、更新、卸载模组，自动匹配游戏版本，告别繁琐操作</p>
+                </div>
 
-<style>
-a.no-underline {
-    text-decoration: none;
-    color: #fff;
-}
-</style>
+                <!-- 功能卡片2 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-image text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">材质包库</h3>
+                    <p class="text-gray-600">海量高清材质包免费下载，支持预览功能，一键切换游戏画质</p>
+                </div>
 
+                <!-- 功能卡片3 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-map text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">地图推荐</h3>
+                    <p class="text-gray-600">精选生存、创造、解谜等各类优质地图，一键导入游戏</p>
+                </div>
 
-  <!-- 下载区域 -->
-  <section class="py-16 px-4 md:px-8 bg-primary/5">
-    <div class="container mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">立即体验A盒社区</h2>
-      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">一键下载安装，开启我的世界全新体验，解锁更多模组与社区互动功能</p>
-      <button class="download-btn">
-        <i class="fa fa-download mr-2"></i> <a href="abox.apk" class="no-underline">下载A盒社区 V1.0</a>
-      </button>
-      <p class="text-sm text-gray-500 mt-4">安全下载 · 无捆绑</p>
-    </div>
-  </section>
+                <!-- 功能卡片4 -->
+           
 
-  <!-- 友好链接 -->
-  <section id="links" class="py-12 px-4 md:px-8 bg-gray-50">
-    <div class="container mx-auto max-w-6xl">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">友好链接</h2>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
-        <a href="https://klpbbs.com/#" class="feature-card flex flex-col items-center">
-          <i class="fa fa-home text-2xl text-primary mb-2"></i>
-          <span>苦力怕论坛</span>
-        </a>
-        <a href="thanks.html" class="feature-card flex flex-col items-center">
-          <i class="fa fa-info-circle text-2xl text-primary mb-2"></i>
-          <span>特别鸣谢</span>
-        </a>
- 
+                <!-- 功能卡片5 -->
+          
+
+                <!-- 功能卡片6 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-shield text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">安全防护</h3>
+                    <p class="text-gray-600">内置安全检测，杜绝恶意模组和病毒，保障账号和设备安全</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="download" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4 font-minecraft">立即获取我的世界A盒</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">支持多平台下载，安全无毒，定期更新，持续优化体验</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Windows版 -->
+            
+
+                <!-- 安卓版 -->
+                <div class="bg-gray-800 rounded-xl p-6 text-center card-hover">
+                    <i class="fa fa-android text-green-400 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">安卓版</h3>
+                    <p class="text-gray-400 mb-4">支持 Android 8.0+ 系统</p>
+                    <a href="https://www.123684.com/s/g17cVv-B23iH" class="inline-block bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fa fa-download mr-2"></i>下载APK
+                    </a>
+                </div>
+
+                <!-- 苹果版 -->
+                <div class="bg-gray-800 rounded-xl p-6 text-center card-hover">
+                    <i class="fa fa-apple text-gray-400 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">iOS 版</h3>
+                    <p class="text-gray-400 mb-4">制作中</p>
+                    <a href="#" class="inline-block bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                        <i class="fa fa-app-store mr-2"></i>App Store
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center text-gray-400 text-sm">
+                <p>最新版本：v9.3 | 更新时间：2025-08-26</p>
+                <p class="mt-2">温馨提示：请从官方渠道下载，避免安装第三方修改版</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4 font-minecraft">常见问题</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">解答你在使用过程中可能遇到的问题，如有其他疑问可联系客服</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- FAQ项1 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faqBtn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="font-bold text-left">我的世界A盒是否收费？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div class="faqContent hidden p-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">我的世界A盒基础功能完全免费。部分高级功能需要开通会员，但不影响基础使用体验。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ项2 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faqBtn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="font-bold text-left">使用A盒会导致游戏封号吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div class="faqContent hidden p-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">A盒仅提供合规的辅助功能，不包含作弊、外挂等违规内容，正常使用不会导致游戏封号。请不要使用第三方修改的A盒版本，避免因违规功能带来封号风险。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ项3 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faqBtn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="font-bold text-left">如何更新A盒到最新版本？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div class="faqContent hidden p-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">打开A盒后，系统会自动检测新版本，如有更新会弹出提示，点击"立即更新"即可。也可在设置页面手动检查更新，确保获取最新功能和安全补丁。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ项4 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faqBtn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="font-bold text-left">A盒支持启动哪些版本的我的世界？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div class="faqContent hidden p-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">国际版，基岩版</p>
+                    </div>
+
+                <!-- FAQ项5 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faqBtn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="font-bold text-left">安装模组后游戏崩溃如何解决？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div class="faqContent hidden p-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">崩溃多因模组版本不兼容或冲突：1. 卸载最近安装的模组；2. 确认模组与当前游戏版本匹配；3. 关闭后台占用内存的程序，释放运行空间。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ项6 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faqBtn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <span class="font-bold text-left">A盒支持与朋友联机吗？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div class="faqContent hidden p-4 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">
+                         </p>暂未开放</div>
+                </div>
+            </div>
+
+            <!-- 客服支持入口 -->
+            <div class="max-w-3xl mx-auto mt-12 text-center">
+                <p class="text-gray-600 mb-4">仍有疑问？通过以下方式获取官方支持</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://qm.qq.com/q/JJGkOENkgk" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                        <i class="fa fa-headphones"></i> 在线客服
+                    </a>
+                    <a href="#" class="inline-flex items-center gap-2 bg-gray-200 text-dark px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">
+                        <i class="fa fa-file-text"></i> 没有了哦
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 版本信息区 -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4 font-minecraft">最新版本信息</h2>
+                <p class="text-gray-300">定期更新优化，确保功能稳定与体验升级</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold">A盒 v9.3</h3>
+                        <p class="text-gray-400 mt-1">更新时间：2025-08-26</p>
+                    </div>
+                    <a href="#download" class="mt-4 md:mt-0 text-secondary hover:underline">前往下载最新版</a>
+                </div>
+
+                <h4 class="font-bold text-lg mb-3">更新内容</h4>
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-green-400 mt-1 mr-3"></i>
+                        <span>1.在聊天中的官方群聊里支持发布图片
+<br>2.支持匿名私信他人
+<br>3.优化了论坛加载页面加载时间过长的特性
+<br>4.优化了视频加载两次的bug
+<br>5.优化了视频播到一半不能看的bug
+<br>6.首页UI优化到骨折
+<br>7.优化了一些图片资源加载失败的问题
+<br>8.可以私信好友，发送卡片信息(卡片信息包括分享资源，分享论坛，分享好友等等)
+<br>9.设置中新增内存管理，可以一键清除占用的内存
+<br>10.设置中新增鸣谢名单，感谢支持A盒的A友
+<br>11.设置中新增意见反馈
+<br>12.变更加载方式，更流畅
+<br>13.聊天页面支持长按头像@他人</span>
+                    </li>           
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安全声明区 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-6 font-minecraft">安全保障</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-shield text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">资源安全检测</h3>
+                        <p class="text-gray-600">所有模组、材质包经多重病毒扫描，杜绝恶意文件</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-lock text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">账号保护</h3>
+                        <p class="text-gray-600">采用混淆加密技术，保护用户账号信息不泄露</p>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- 品牌信息 -->
+                <div>
+                    <a href="#home" class="flex items-center gap-2 mb-4">
+                        <i class="fa fa-cube text-secondary text-2xl"></i>
+                        <span class="text-xl font-bold font-minecraft">我的世界A盒</span>
+                    </a>
+                    <p class="text-gray-400">为我的世界玩家提供安全、高效的辅助工具，简化游戏管理流程，提升游玩体验。</p>
+                </div>
+
+                <!-- 快速链接 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">导航</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-secondary transition-colors">首页</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-secondary transition-colors">功能介绍</a></li>
+                        <li><a href="#download" class="text-gray-400 hover:text-secondary transition-colors">下载中心</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-secondary transition-colors">常见问题</a></li>
+                    </ul>
+                </div>
+
+                <!-- 联系与政策 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">联系与政策</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fa fa-envelope"></i>
+                            <span>252037050@qq.com</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fa fa-phone"></i>
+                            <span>114-514-541-88</span>
+                        </li>
+                        <li><a href="https://mcabox.github.io/newabox/A%E7%9B%92%E7%94%A8%E6%88%B7%E5%85%B1%E5%90%8C%E5%8D%8F%E8%AE%AE.html" class="text-gray-400 hover:text-secondary transition-colors">用户协议</a></li>
+                        <li><a href="https://mcabox.github.io/newabox/next.html" class="text-gray-400 hover:text-secondary transition-colors">更新日志</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 版权信息 -->
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 A盒社区(我的世界A盒) 版权所有 | 本工具为游戏辅助用途，与Mojang AB和网易无关联</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-secondary text-dark w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all 0.3s ease">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript 交互逻辑 -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark/95', 'shadow-lg');
+                navbar.classList.remove('bg-dark/80');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('bg-dark/95', 'shadow-lg');
+                navbar.classList.add('bg-dark/80');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // FAQ折叠功能
+        const faqBtns = document.querySelectorAll('.faqBtn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                
+                // 关闭其他展开的FAQ
+                faqBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        otherBtn.nextElementSibling.classList.add('hidden');
+                        otherBtn.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    }
+                    // 滚动到目标位置（适配导航栏高度）
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 返回顶部
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
